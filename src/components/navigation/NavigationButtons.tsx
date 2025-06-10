@@ -30,7 +30,8 @@ export const NavigationButtons = ({
   const handleNext = () => {
     if (onNext) {
       onNext();
-    } else if (nextPath) {
+    }
+    if (nextPath) {
       navigate(nextPath);
     }
   };
