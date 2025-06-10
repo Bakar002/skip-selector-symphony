@@ -6,7 +6,6 @@ import { PageLayout } from '@/components/layout/PageLayout';
 import { AnimatedCard } from '@/components/common/AnimatedCard';
 import { NavigationButtons } from '@/components/navigation/NavigationButtons';
 import { CardContent } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
 
 const DateSelectionPage = () => {
   const [selectedDate, setSelectedDate] = useState<string>('');
@@ -106,7 +105,7 @@ const DateSelectionPage = () => {
         nextPath="/payment"
         nextDisabled={!selectedDate || !selectedTime}
         onNext={handleNext}
-        showSummary={selectedDate && selectedTime}
+        showSummary={!!(selectedDate && selectedTime)}
         summaryContent={
           selectedDate && selectedTime && (
             <div className="text-right">
