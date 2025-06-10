@@ -1,8 +1,16 @@
 
-import { SkipSelectorPage } from '@/components/SkipSelectorPage';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Index = () => {
-  return <SkipSelectorPage />;
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    // Redirect to the first step of the booking flow
+    navigate('/', { replace: true });
+  }, [navigate]);
+
+  return null;
 };
 
 export default Index;
