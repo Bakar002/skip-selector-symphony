@@ -1,73 +1,220 @@
-# Welcome to your Lovable project
 
-## Project info
+# Skip Booking Application
 
-**URL**: https://lovable.dev/projects/ac2604ee-9027-402f-b35b-a1fac7419f4b
+A modern, responsive web application for booking skip hire services built with React, TypeScript, and Tailwind CSS.
 
-## How can I edit this code?
+## 🚀 Features
 
-There are several ways of editing your application.
+- **Multi-step booking process** with progress tracking
+- **Responsive design** that works on all devices
+- **Smooth animations** powered by Framer Motion
+- **Type-safe** development with TypeScript
+- **Modern UI components** using shadcn/ui
+- **Clean architecture** with reusable components
 
-**Use Lovable**
+## 📋 Booking Flow
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/ac2604ee-9027-402f-b35b-a1fac7419f4b) and start prompting.
+The application guides users through a 6-step booking process:
 
-Changes made via Lovable will be committed automatically to this repo.
+1. **Postcode Entry** - Validate service availability in user's area
+2. **Waste Type Selection** - Choose between domestic and commercial waste
+3. **Skip Selection** - Browse and select from available skip sizes
+4. **Permit Check** - Determine if a permit is required
+5. **Date Selection** - Choose delivery date and time slot
+6. **Payment** - Complete the booking with payment details
 
-**Use your preferred IDE**
+## 🏗️ Architecture
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Component Structure
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+```
+src/
+├── components/
+│   ├── common/           # Reusable UI components
+│   │   └── AnimatedCard.tsx
+│   ├── layout/           # Layout components
+│   │   └── PageLayout.tsx
+│   ├── navigation/       # Navigation components
+│   │   └── NavigationButtons.tsx
+│   └── ui/              # shadcn/ui components
+├── pages/               # Page components
+│   ├── PostcodePage.tsx
+│   ├── WasteTypePage.tsx
+│   ├── SkipSelectionPage.tsx
+│   ├── PermitCheckPage.tsx
+│   ├── DateSelectionPage.tsx
+│   └── PaymentPage.tsx
+├── hooks/               # Custom React hooks
+└── types/               # TypeScript type definitions
 ```
 
-**Edit a file directly in GitHub**
+### Design Principles
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+1. **Component-Based Architecture**: Each piece of functionality is broken down into focused, reusable components
+2. **Separation of Concerns**: Business logic, UI components, and routing are clearly separated
+3. **Progressive Enhancement**: Features are built to work without JavaScript and enhanced with interactions
+4. **Mobile-First Design**: All components are designed mobile-first with responsive breakpoints
 
-**Use GitHub Codespaces**
+## 🎨 Design System
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+The application uses a comprehensive design system with:
 
-## What technologies are used for this project?
+- **Semantic color tokens** for consistent theming
+- **Typography scale** for readable content hierarchy
+- **Spacing system** for consistent layout
+- **Animation utilities** for smooth interactions
 
-This project is built with:
+### Color Palette
+- Primary: Blue gradient (#3B82F6 to #8B5CF6)
+- Success: Green (#10B981)
+- Warning: Yellow (#F59E0B)
+- Error: Red (#EF4444)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## 🔧 Navigation System
 
-## How can I deploy this project?
+The navigation system is built with the following features:
 
-Simply open [Lovable](https://lovable.dev/projects/ac2604ee-9027-402f-b35b-a1fac7419f4b) and click on Share -> Publish.
+### NavigationButtons Component
+- **Flexible routing**: Supports both programmatic navigation and path-based routing
+- **State management**: Handles disabled states and conditional rendering
+- **Progress indication**: Shows user progress through the booking flow
+- **Summary display**: Displays selection summary when available
 
-## Can I connect a custom domain to my Lovable project?
+### Key Navigation Features
+1. **Bidirectional navigation** - Users can go back and forward
+2. **Progress tracking** - Visual progress stepper shows current position
+3. **Conditional navigation** - Next button is disabled until required fields are completed
+4. **State persistence** - User selections are preserved using localStorage
 
-Yes, you can!
+## 🎭 Animation Strategy
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+Animations are implemented using Framer Motion with the following approach:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+### Animation Types
+1. **Page transitions** - Smooth fade-in/fade-out between pages
+2. **Component animations** - Staggered animations for lists and grids
+3. **Micro-interactions** - Hover effects and button states
+4. **Progress animations** - Animated progress stepper
+
+### Performance Considerations
+- **Reduced motion support** - Respects user preferences for reduced motion
+- **Hardware acceleration** - Uses transform and opacity for smooth animations
+- **Lazy loading** - Components animate in as they come into view
+
+## 🔄 State Management
+
+The application uses a combination of state management approaches:
+
+1. **Local component state** - For component-specific data (useState)
+2. **URL state** - For navigation and current page state (React Router)
+3. **Persistent state** - For user selections across pages (localStorage)
+4. **Server state** - For API data (React Query via useSkips hook)
+
+### Data Flow
+1. User makes selection on a page
+2. Selection is stored in component state
+3. On navigation, selection is persisted to localStorage
+4. Next page can access previous selections if needed
+5. Final booking data is compiled from all stored selections
+
+## 🛡️ Error Handling
+
+The application includes comprehensive error handling:
+
+1. **Form validation** - Client-side validation with clear error messages
+2. **Network errors** - Graceful handling of API failures with retry options
+3. **Route protection** - Prevents access to invalid routes
+4. **Fallback UI** - Loading states and error boundaries
+
+## 🔧 Development Approach
+
+### Code Quality
+- **TypeScript** for type safety and better developer experience
+- **ESLint** for code linting and consistency
+- **Component composition** over inheritance
+- **Custom hooks** for reusable business logic
+
+### Testing Strategy
+- **Component testing** with React Testing Library
+- **Type checking** with TypeScript compiler
+- **Manual testing** across different devices and browsers
+
+### Performance Optimizations
+- **Code splitting** with React.lazy for route-based chunks
+- **Image optimization** with proper formats and lazy loading
+- **Bundle analysis** to identify and remove unused code
+- **Caching strategies** for API responses
+
+## 🚦 Navigation Flow Fix
+
+### Problem Identified
+The navigation between pages wasn't working properly due to the conditional logic in the NavigationButtons component.
+
+### Solution Implemented
+1. **Fixed navigation logic**: Changed from `else if` to separate `if` statements so both `onNext` callback and navigation can execute
+2. **Added state persistence**: User selections are now saved to localStorage for persistence across page reloads
+3. **Improved error handling**: Better validation and user feedback for incomplete forms
+
+### Navigation Logic
+```typescript
+const handleNext = () => {
+  // Execute any page-specific logic first
+  if (onNext) {
+    onNext();
+  }
+  // Then navigate to next page
+  if (nextPath) {
+    navigate(nextPath);
+  }
+};
+```
+
+This ensures that:
+- Page-specific logic (like saving data) executes first
+- Navigation always happens when a next path is provided
+- User data is preserved across navigation
+
+## 🔮 Future Enhancements
+
+1. **Authentication system** - User accounts and booking history
+2. **Payment integration** - Real payment processing
+3. **Admin dashboard** - Booking management for staff
+4. **Email notifications** - Booking confirmations and reminders
+5. **GPS tracking** - Real-time delivery tracking
+6. **Multi-language support** - Internationalization
+7. **Accessibility improvements** - Enhanced screen reader support
+
+## 📱 Browser Support
+
+- Chrome 80+
+- Firefox 80+
+- Safari 14+
+- Edge 80+
+
+## 🛠️ Development
+
+### Prerequisites
+- Node.js 18+
+- npm or yarn
+
+### Getting Started
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+
+# Build for production
+npm run build
+```
+
+### Available Scripts
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run lint` - Run ESLint
+- `npm run type-check` - Run TypeScript compiler
+
+---
+
+This application demonstrates modern React development practices with a focus on user experience, code quality, and maintainability.

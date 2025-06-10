@@ -33,6 +33,9 @@ const DateSelectionPage = () => {
 
   const handleNext = () => {
     console.log('Selected date:', selectedDate, 'time:', selectedTime);
+    // Store selection in localStorage for persistence
+    localStorage.setItem('selectedDeliveryDate', selectedDate);
+    localStorage.setItem('selectedDeliveryTime', selectedTime);
   };
 
   return (
